@@ -21,6 +21,8 @@ custom:
 
 provider:
   name: aws
+  runtime: nodejs14.x
+  region: us-east-1
 
 functions:
   createTodo:
@@ -29,6 +31,13 @@ functions:
       - http:
           path: /create-todo/{userId}
           method: POST
+          cors: true
+  findTodo:
+    handler: src/functions/findTodo.handle
+    events:
+      - http:
+          path: /find-todo/{userId}
+          method: GET
           cors: true
 
 resources:
